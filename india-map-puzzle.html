@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive India Map Puzzle</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #map-container { position: relative; width: 800px; height: 600px; }
+        #india-map { width: 100%; height: 100%; }
+        .draggable { cursor: move; padding: 10px; background-color: #f0f0f0; border: 1px solid #ccc; display: inline-block; }
+        .dropzone { width: 100px; height: 50px; background-color: #e0e0e0; border: 2px dashed #aaa; margin: 5px; position: absolute; }
+    </style>
+</head>
+<body>
+    <h1>Interactive India Map Puzzle</h1>
+    <div id="map-container">
+        <img id="india-map" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Map_of_India.svg/1200px-Map_of_India.svg.png" alt="Map of India" />
+        <!-- Drop zones for states -->
+        <div class="dropzone" style="left: 50px; top: 100px;" data-state="Maharashtra"></div>
+        <div class="dropzone" style="left: 150px; top: 200px;" data-state="Karnataka"></div>
+        <div class="dropzone" style="left: 250px; top: 300px;" data-state="Tamil Nadu"></div>
+        <!-- Add more states as necessary -->
+    </div>
+    <div>
+        <h3>Drag the following names to their respective states:</h3>
+        <div class="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text', this.dataset.state);" data-state="Maharashtra">Maharashtra</div>
+        <div class="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text', this.dataset.state);" data-state="Karnataka">Karnataka</div>
+        <div class="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text', this.dataset.state);" data-state="Tamil Nadu">Tamil Nadu</div>
+        <!-- Add more draggable state names as necessary -->
+    </div>
+    <script>
+        const dropzones = document.querySelectorAll('.dropzone');
+        dropzones.forEach(dropzone => {
+            dropzone.addEventListener('dragover', (event) => {
+                event.preventDefault();
+            });
+            dropzone.addEventListener('drop', (event) => {
+                event.preventDefault();
+                const stateName = event.dataTransfer.getData('text');
+                if (dropzone.dataset.state === stateName) {
+                    dropzone.innerText = stateName;
+                    dropzone.style.backgroundColor = '#a0e0a0';
+                } else {
+                    alert('Wrong state dropped!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
