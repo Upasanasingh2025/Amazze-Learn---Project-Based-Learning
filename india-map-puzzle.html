@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive India Map Puzzle</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        #map-container { position: relative; width: 800px; height: 600px; margin: auto; }
-        .state { width: 100px; height: 100px; position: absolute; cursor: pointer; }
-        #score { font-size: 24px; margin: 20px; }
-        .drop-zone { border: 2px dashed #ccc; padding: 10px; margin: 10px; }
-    </style>
-</head>
-<body>
-    <h1>Interactive India Map Puzzle</h1>
-    <div id="score">Score: 0</div>
-    <div id="map-container">
-        <div class="state" id="state1" draggable="true" data-state="Maharashtra" style="top: 50px; left: 100px; background: lightblue;">Maharashtra</div>
-        <div class="state" id="state2" draggable="true" data-state="Karnataka" style="top: 150px; left: 200px; background: lightgreen;">Karnataka</div>
-        <!-- Additional states can be added here -->
-    </div>
-    <div class="drop-zone" id="drop-zone">Drop Here</div>
-    <script>
-        let score = 0;
-        document.querySelectorAll('.state').forEach(state => {
-            state.addEventListener('dragstart', (e) => { e.dataTransfer.setData('text', state.id); });
-        });
-
-        const dropZone = document.getElementById('drop-zone');
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); });
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const id = e.dataTransfer.getData('text');
-            const droppedState = document.getElementById(id);
-            dropZone.appendChild(droppedState);
-            score += 10; // Scoring system
-            document.getElementById('score').innerText = `Score: ${score}`;
-            droppedState.style.border = '2px solid green'; // Visual feedback
-        });
-    </script>
-</body>
-</html>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 950">
+  <path d="M..." fill="#F0F0F0" stroke="#000" stroke-width="1"/>
+  <!-- Add more paths for each state with accurate SVG outlines -->
+</svg>
